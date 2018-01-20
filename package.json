@@ -13,6 +13,7 @@
     "express": "^4.16.2",
     "neo4j": "^2.0.0-RC2",
     "pug": "^2.0.0-rc.4",
-    "pug-bootstrap": "0.0.15"
+    "pug-bootstrap": "0.0.15",
+    "vis": "^4.21.0"
   }
 }

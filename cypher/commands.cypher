@@ -51,10 +51,12 @@ MATCH (a:Game{ name:'DOOM' }), (b:Publisher{ name:'Bethesda Softworks' }) CREATE
 MATCH (a:Game{ name:'The Elder Scrolls V: Skyrim - Special Edition' }), (b:Publisher{ name:'Bethesda Softworks' }) CREATE (a)-[r:PublishedBy{ date:'11-11-2011' }]->(b);
 MATCH (a:Game{ name:'The Witcher 3: Wild Hunt' }), (b:Publisher{ name:'CD Projekt' }) CREATE (a)-[r:PublishedBy{ date:'19-05-2015' }]->(b);
 
-CREATE (:Platform{ name:'PC' });
-CREATE (:Platform{ name:'PS4' });
-CREATE (:Platform{ name:'XONE' });
+// Better not :)
 
-MATCH (a:Platform{ name:'PC' }), (b:Game) CREATE (b)-[r:AvailableOn]->(a);
-MATCH (a:Platform{ name:'XONE' }), (b:Game) CREATE (b)-[r:AvailableOn]->(a);
-MATCH (a:Platform{ name:'PS4' }), (b:Game) WHERE b.name <> 'Cuphead' CREATE (b)-[r:AvailableOn]->(a);
+//CREATE (:Platform{ name:'PC' });
+//CREATE (:Platform{ name:'PS4' });
+//CREATE (:Platform{ name:'XONE' });
+
+//MATCH (a:Platform{ name:'PC' }), (b:Game) CREATE (b)-[r:AvailableOn]->(a);
+//MATCH (a:Platform{ name:'XONE' }), (b:Game) CREATE (b)-[r:AvailableOn]->(a);
+//MATCH (a:Platform{ name:'PS4' }), (b:Game) WHERE b.name <> 'Cuphead' CREATE (b)-[r:AvailableOn]->(a);

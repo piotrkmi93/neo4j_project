@@ -1,0 +1,8 @@
+#graph-space, #info-box{
+    height: calc(100vh - 100px);
+}
+
+#info-box{
+    border-left: 1px solid #e3e3e3;
+    padding-left: 16px;
+}

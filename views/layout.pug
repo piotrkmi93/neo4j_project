@@ -1,0 +1,30 @@
+doctype html
+html
+    head
+        title neo4j project
+        meta(charset="utf-8")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/css/vis.min.css")
+        link(rel="stylesheet", href="/css/styles.css")
+        script(src="/js/jquery-3.2.1.min.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/vis.min.js")
+    body
+        nav(class="navbar navbar-default")
+            div(class="container-fluid")
+                div(class="navbar-header")
+                    a(href="/" class="navbar-brand")
+                        span Neo4j Project
+                ul(class="nav navbar-nav navbar-right")
+                    li
+                        a(href="/add_game")
+                            span Dodaj grę
+                    li
+                        a(href="/add_producer")
+                            span Dodaj producenta
+                    li
+                        a(href="/add_publisher")
+                            span Dodaj wydawcę
+        div(class="container-fluid")
+            block content
+        script(src="/js/scripts.js")
