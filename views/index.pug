@@ -3,6 +3,19 @@ extends layout
 block content
     div(class="row")
         div(class="col-md-8")
+            div(id="checkbox-box")
+                div(class="checkbox")
+                    label
+                        input(id="BelongsTo", onchange="checkboxChanges()", type="checkbox" checked)
+                        span BelongsTo
+                div(class="checkbox")
+                    label
+                        input(id="CreatedBy", onchange="checkboxChanges()", type="checkbox" checked)
+                        span CreatedBy
+                div(class="checkbox")
+                    label
+                        input(id="PublishedBy", onchange="checkboxChanges()", type="checkbox" checked)
+                        span PublishedBy
             div(id="graph-space")
         div(class="col-md-4")
             div(id="info-box")

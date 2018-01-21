@@ -1,24 +1,28 @@
 let neo4j = require('neo4j');
 let db = new neo4j.GraphDatabase('http://username:password@localhost:7474'),
-    express = require('express'),
-    bodyParser = require('body-parser');
+express = require('express'),
+bodyParser = require('body-parser');
 
 let app = express();
 app.set('view engine', 'pug');
 app.use(express.static('public'));
-// app.use(bodyParser({limit: '10mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.get('/', (requset, response) => {
+app.get('/', (requset, response) => response.render('index'));
 
-    response.render('index');
-});
-
-app.get('/get_graph', (request, response) => {
+app.post('/get_graph', (request, response) => {
+    let query = "MATCH (a)-[r]->(b) WHERE TYPE(r) IN [",
+        tmpquery = "";
+    for(let param in request.body)
+        if( request.body[param] === 'true' ) {
+            if(tmpquery.length) tmpquery += ",";
+            tmpquery += `'${param}'`;
+        }
+    query += tmpquery + "] RETURN a,r,b;";
     db.cypher({
-        query: "MATCH (a)-[r]->(b) return a,r,b;"
+        query: query
     }, (err, results) => {
         if(err) throw err;
         response.send({ graph: prepareGraph(results) });
@@ -72,14 +76,6 @@ function getNodeColor(node){
     else if (~node.labels.indexOf("Publisher"))  return "#C5C7E8";
     else                                         return "#FFFFFF";
 }
-
-// function getNodeShape(node){
-//     if      (~node.labels.indexOf("Game"))       return "#B4FFE3";
-//     else if (~node.labels.indexOf("Genre"))      return "#98FC71";
-//     else if (~node.labels.indexOf("Producer"))   return "#77EEFF";
-//     else if (~node.labels.indexOf("Publisher"))  return "#C5C7E8";
-//     else                                         undefined;
-// }
 
 function getEdgeColor(edge){
     if  (edge.type === "BelongsTo")     return {color:"#FFD6A2"};

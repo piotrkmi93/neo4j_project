@@ -1,10 +1,13 @@
-$.get(
-    window.location.href + "get_graph",
-    data => {
-        console.log(data);
-        createGraph(data.graph);
-    }
-);
+function loadData(params){
+    $.post(
+        window.location.href + "get_graph",
+        params,
+        data => {
+            console.log(data);
+            createGraph(data.graph);
+        }
+    );
+}
 
 function createGraph( { nodes, edges } ){
     let vNodes = new vis.DataSet(nodes),
@@ -64,11 +67,27 @@ function prepareNodeInfo(node){
 
 function prepareEdgeInfo(edge){
     let html = `<p><strong>${edge.label}</strong></p>`;
-    html += `<p>ID: ${edge.id}`;
-    html += `<p>FromID: ${edge.from}`;
-    html += `<p>ToID: ${edge.to}`;
+    html += `<p>ID: ${edge.id}</p>`;
+    html += `<p>FromID: ${edge.from}</p>`;
+    html += `<p>ToID: ${edge.to}</p>`;
     if(edge.properties && edge.properties.date){
         html += `Additional info:<ul><li>${edge.properties.date}</li></ul>`;
     }
     return html;
 }
+
+function checkboxChanges(){
+    let checkboxes = {
+            BelongsTo:      document.getElementById('BelongsTo').checked,
+            CreatedBy:      document.getElementById('CreatedBy').checked,
+            PublishedBy:    document.getElementById('PublishedBy').checked
+        };
+
+    loadData(checkboxes);
+}
+
+loadData({
+    BelongsTo:  true,
+    CreatedBy:      true,
+    PublishedBy:    true
+});

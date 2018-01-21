@@ -6,3 +6,11 @@
     border-left: 1px solid #e3e3e3;
     padding-left: 16px;
 }
+
+#checkbox-box{
+    position: absolute;
+    background-color: #FFF;
+    border: 1px solid #e3e3e3;
+    padding: 10px;
+    z-index: 1;
+}
